@@ -1,6 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../context/SocketProvider";
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import './lobby.css';
+import logo from "../aicte.png";
 
 const LobbyScreen = () => {
   const [email, setEmail] = useState("");
@@ -33,27 +37,48 @@ const LobbyScreen = () => {
   }, [socket, handleJoinRoom]);
 
   return (
-    <div>
-      <h1>Lobby</h1>
-      <form onSubmit={handleSubmitForm}>
-        <label htmlFor="email">Email ID</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br />
-        <label htmlFor="room">Room Number</label>
-        <input
-          type="text"
-          id="room"
-          value={room}
-          onChange={(e) => setRoom(e.target.value)}
-        />
-        <br />
-        <button>Join</button>
-      </form>
+    <div className="container">
+      
+      <Box className="lobby" m="auto" sx={{
+        width: 500,
+        height: 375,
+        color: 'black',
+        alignItems: "center",
+        backgroundColor: 'rgb(250, 249, 246)',
+      }}>
+        <Container className="wrapper">
+          <Container className="header">
+            <img src={logo} alt="logo" className="logo"/>
+            <h2 className="name">Vaarta</h2>
+          </Container>
+          <Container>
+            <h1 className="lobby-head">LOBBY</h1>
+            <form onSubmit={handleSubmitForm}>
+              <label htmlFor="email" className="email-label">Email ID</label>
+              <br/>
+              <input
+                className="inp email"
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <br />
+              <label className="roomLabel" htmlFor="room">Room Number</label>
+              <br/>
+              <input
+                className="inp roomNo"
+                type="text"
+                id="room"
+                value={room}
+                onChange={(e) => setRoom(e.target.value)}
+              />
+              <br />
+              <button className="join">Join</button>
+            </form>
+          </Container>
+        </Container>
+      </Box>
     </div>
   );
 };
