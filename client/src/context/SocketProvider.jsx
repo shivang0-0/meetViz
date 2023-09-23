@@ -9,7 +9,9 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = (props) => {
-  const socket = useMemo(() => io("localhost:8000"), []);
+  const serverIp = process.env.REACT_APP_SERVER_IP
+  const serverPort = process.env.REACT_APP_SERVER_PORT  
+  const socket = useMemo(() => io(`${serverIp}:${serverPort}`), []);
 
   return (
     <SocketContext.Provider value={socket}>
