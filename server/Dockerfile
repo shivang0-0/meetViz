@@ -1,7 +1,6 @@
 FROM node:20-alpine
-WORKDIR /app
-COPY server/ ./server
-WORKDIR /app/server
+WORKDIR /server
+COPY . .
 RUN npm install
 EXPOSE 8000
 CMD ["npm", "start"]
