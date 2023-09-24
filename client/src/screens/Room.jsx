@@ -117,45 +117,43 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div class="outer-wrapper">
+    <div className="outer-wrapper">
       <Container className="inner-wrapper">
         <h1>Vaarta Room</h1>
-       {remoteSocketId ? <h4 className="connected"> Connected</h4> : <h4>No one in room</h4>}
+        {remoteSocketId ? <h4 className="connected"> Connected</h4> : <h4>No one in the room</h4>}
         {myStream && <button onClick={sendStreams} className="btn send">Send Stream</button>}
         {remoteSocketId && <button className="btn call" onClick={handleCallUser}>CALL</button>}
-        {myStream && <button className="btn toggle" onClick={toggleCamera}>Toggle_Camera</button>}
-        <Container className="streams">
+        {myStream && <button className="btn toggle" onClick={toggleCamera}>Toggle Camera</button>}
+        <div className="streams" style={{ display: "flex" }}>
           {myStream && (
-            <>
-              {/* <h1>My Stream</h1> */}
+            <div className="stream-wrapper" style={{ flex: 1, marginRight: "10px" }}>
               <ReactPlayer
                 playing
                 muted
-                height="100px"
-                width="200px"
+                height="100%"
                 url={myStream}
                 className="stream"
               />
-            </>
+              <h1>Your Stream</h1>
+            </div>
           )}
           {remoteStream && (
-            <>
-              {/* <h1>Remote Stream</h1> */}
+            <div className="stream-wrapper" style={{ flex: 1 }}>
               <ReactPlayer
                 playing
                 muted
-                height="100px"
-                width="200px"
+                height="100%"
                 url={remoteStream}
                 className="stream"
-
               />
-            </>
+              <h1>Receiver's Stream</h1>
+            </div>
           )}
-        </Container>
+        </div>
       </Container>
     </div>
   );
+  
 };
 
 export default RoomPage;
